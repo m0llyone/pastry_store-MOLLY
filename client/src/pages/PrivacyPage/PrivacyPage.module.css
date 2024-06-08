@@ -1,0 +1,42 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.wrapperPrivacy {
+  padding: 50px 20px;
+}
+
+.dateOfUpdate {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wrapperPrivacy p {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.wrapperPrivacy h2 {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  margin: 20px 0;
+}
+
+.wrapperPrivacy h3 {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 35px;
+  margin: 20px 0;
+}
+
+.wrapperPrivacy h4 {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  margin: 20px 0;
+}

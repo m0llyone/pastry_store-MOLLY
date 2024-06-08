@@ -1,0 +1,110 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+}
+
+.sliderContainer {
+  position: relative;
+}
+
+.dots {
+  display: none;
+}
+
+.title {
+  text-align: center;
+}
+
+.carousel {
+  padding: 60px 0 90px;
+  display: flex;
+}
+
+.containerItem {
+  margin-right: 30px;
+}
+
+.button {
+  display: flex;
+  margin-top: -320px;
+  outline: none;
+  border-radius: 22px;
+  width: 76px;
+  height: 27px;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  border: 1px solid #705A66 !important;
+  transition: 0.3s;
+}
+
+.nextButton {
+  margin-right: 100px;
+  background-image: url('../../assets/images/arrowRight.svg') !important;
+}
+
+.prevButton {
+  margin-left: 1160px;
+  background-image: url('../../assets/images/arrowLeft.svg') !important;
+}
+
+.buttonView {
+  width: 605px;
+  height: 67px;
+  margin: 0 auto;
+}
+
+.button:hover {
+  background-color: #F5EEE0 !important;
+}
+
+@media screen and (max-width: 1425px) {
+  .nextButton {
+    margin-right: 10px;
+  }
+
+  .prevButton {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width:1210px) {
+  .button {
+    margin-top: -200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .buttonView {
+    max-width: 355px;
+    font-size: 18px !important;
+  }
+
+  .dots {
+    display: block;
+    background-color: #F5EEE0 !important;
+    border-radius: 50%;
+    fill: #F5EEE0 !important;
+    width: 11px;
+    height: 11px;
+  }
+
+  .dotsContainer {
+    display: flex;
+    gap: 20px;
+    max-width: 104px;
+    margin-top: -50px !important;
+  }
+
+  .button {
+    margin-top: 0;
+    position: absolute;
+    bottom: -163px;
+  }
+
+  .nextButton {
+    position: absolute;
+    right: 0;
+  }
+}

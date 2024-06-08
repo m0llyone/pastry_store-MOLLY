@@ -1,0 +1,226 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 37px 115px 105px;
+
+}
+
+.removeContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 90px;
+}
+
+.crossContainer {
+  display: flex;
+  justify-content: end;
+  margin: 0 10px 20px 0;
+}
+
+.productsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px ;
+}
+
+.productContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 38px;
+}
+
+.aboutContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.propsContainer {
+  padding: 40px 115px 0 0;
+  display: flex;
+  column-gap: 50px;
+  color: #705A66;
+  font-family: 'Montserrat';
+  font-size: 16px;
+}
+
+.props {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  color: #705A66;
+  font-family: 'Montserrat';
+  font-size: 24px;
+}
+
+.priceContainer {
+  padding: 30px 30px 30px 20px;
+  height: 225px;
+  border-radius: 10px;
+  background: #F5EEE0;
+  color: #705A66;
+  font-family: 'Montserrat';
+}
+
+.price {
+  font-size: 16px;
+  margin: 30px 0 60px;
+}
+
+.finalPrice {
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.basketButton {
+  width: 287px;
+  height: 57px;
+  color: #F5EEE0;
+  background: #705A66;
+}
+
+.cross {
+  transition: .3s all;
+  fill:#705A66;
+  cursor: pointer;
+}
+
+.cross:hover {
+  fill: rgb(182, 9, 9);
+}
+
+.emptyBasket {
+  height: 490px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 70px 0;
+}
+
+.emptyBasketText {
+  font-family: 'Jeff';
+  font-size: 70px;
+  color: #705A66;
+  font-weight: 700;
+}
+
+.fullPriceContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.fullPrice {
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  background-color: #F5EEE0;
+  border-radius: 10px;
+  height: 100px;
+  font-family: 'Montserrat';
+  font-size: 22px;
+  font-weight: 700;
+  color: #705A66;
+}
+
+@media screen and (max-width: 1110px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .propsContainer {
+    font-size: 14px;
+  }
+
+  .productImage {
+    width: 225px;
+    height: 225px;
+  }
+
+  .basketButton {
+    font-size: 18px;
+  }
+
+  .fullPrice {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .container {
+    padding: 30px 10px 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .priceContainer {
+    width: 347px;
+    height: auto;
+  }
+
+  .price {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .propsContainer {
+    padding: 40px 0 0 0;
+  }
+
+  .aboutContainer {
+    gap: 20px;
+  }
+
+  .productImage  {
+    width: 168px;
+    height: 176px;
+  }
+
+  .productContainer {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0;
+  }
+
+  .fullPrice {
+    flex-direction: column;
+    gap: 25px;
+    height: auto;
+    width: auto;
+  }
+
+  .crossContainer {
+    margin: 0 0 15px 0 !important;
+  }
+
+  .removeContainer {
+    margin-bottom: 40px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .emptyBasket {
+    padding: 30px 0;
+    height: 350px;
+  }
+
+  .emptyBasketText {
+    font-size: 45px;
+  }
+}
+
+@media screen and (max-width:410px) {
+  .crossContainer {
+    max-width: 380px;
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+  color: #705A66;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat';
+  font-size: 24px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  background: #F5EEE0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.button:hover {
+  color: #f3b251;
+  box-shadow: 0 4px 12px 3px #f7e1b4;
+}

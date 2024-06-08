@@ -1,0 +1,53 @@
+.container {
+  padding: 20px 100px 120px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.titleCatalog {
+  text-align: center;
+  margin: 20px 0 30px;
+}
+
+.linkContainer {
+  max-width: 730px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navLink_active {
+  background: #705a66;
+  color: rgb(186, 182, 182) !important;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 1px solid #705a66;
+  padding: 10px 30px;
+  color: #705a66;
+  font-family: 'Montserrat';
+  font-size: 18px;
+}
+
+.productsContainer {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 30px 10px 60px;
+  }
+
+  .navLink {
+    font-size: 16px;
+  }
+}

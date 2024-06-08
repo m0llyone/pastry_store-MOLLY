@@ -1,0 +1,92 @@
+.background {
+  background: #705a66;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 102px 135px 105px 103px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.contacts {
+  max-width: 315px;
+  height: 106px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #f5f7f8;
+  font-family: 'Montserrat';
+  font-size: 18px;
+}
+
+.link {
+  color: #f5f7f8;
+  font-family: 'Montserrat';
+  font-size: 18px;
+}
+
+.iconsContainer {
+  max-width: 182px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tg,
+.inst,
+.linkedin {
+  transition: 0.2s;
+}
+
+.tg:hover {
+  fill: #28a7e8;
+}
+
+.inst:hover {
+  fill: #cc426b;
+}
+
+.linkedin:hover {
+  fill: #1474d4;
+}
+
+@media screen and (max-width: 1065px) {
+  .container {
+    padding: 60px 30px 120px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .contacts {
+    font-size: 18px;
+    text-align: center;
+    order: 1;
+  }
+
+  .iconsContainer {
+    gap: 40px;
+    margin: 0;
+  }
+
+  .politic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    order: 2;
+  }
+}

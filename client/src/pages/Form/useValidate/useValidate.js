@@ -6,17 +6,14 @@ export const useValidate = () => {
   const nameRegex = new RegExp(/[А-Яа-я]{2,10}/);
   const streetRegex = new RegExp(/^[А-Яа-я]{2,15}$/);
   const houseRegex = new RegExp(/^[0-9]{1,3}[0-9абвгде\/]{1,4}$/i);
-  const emailRegex = new RegExp(
-    /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-  );
 
   const validate = (name, value) => {
     switch (name) {
       case 'name': {
-        if (value.length < 4 || value.length > 10) {
-          setError({ ...error, name: 'X Incorrect length!' });
+        if (value.length < 3 || value.length > 12) {
+          setError({ ...error, name: 'X Длина должна быть > 3 и < 12 символов!' });
         } else if (!nameRegex.test(value)) {
-          setError({ ...error, name: 'X Enter a valid name!' });
+          setError({ ...error, name: 'X Введите корректное имя!' });
         } else {
           setError({ ...error, name: '' });
         }
@@ -25,21 +22,31 @@ export const useValidate = () => {
 
       case 'phone': {
         if (!pattern.test(value)) {
-          setError({ ...error, phone: 'Х Please enter valid mobile number!' });
+          setError({ ...error, phone: 'Х Введите корректный номер телефона! +375XXXXXXXXX' });
         } else {
           setError({ ...error, phone: '' });
         }
         break;
       }
 
-      // case 'email': {
-      //   if (!emailRegex.test(value)) {
-      //     setError({ ...error, email: 'Х Please enter valid email!' });
-      //   } else {
-      //     setError({ ...error, email: '' });
-      //   }
-      //   break;
-      // }
+      case 'date': {
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(value)) {
+          setError({ ...error, date: 'Х Дата некорректна!' });
+        } else {
+          const date = new Date(value);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (date < today) {
+            setError({ ...error, date: 'Х Дата доставки не может быть в прошлом!' });
+          } else if (date.getFullYear() !== today.getFullYear()) {
+            setError({ ...error, date: 'Х Введите текущий год!' });
+          } else {
+            setError({ ...error, date: '' });
+          }
+        }
+        break;
+      }
 
       case 'street': {
         if (!streetRegex.test(value)) {

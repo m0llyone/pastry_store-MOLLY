@@ -120,7 +120,6 @@ const userSlice = createSlice({
       .addCase(addToCart.fulfilled, (state, action) => {
         state.status = false;
         state.basket = action.payload;
-        state.counter += action.payload.items[0].quantity;
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.loading = false;

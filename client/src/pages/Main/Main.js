@@ -5,7 +5,7 @@ import cake from '../../assets/images/mainCake.png';
 import box from '../../assets/images/box.svg';
 import scooter from '../../assets/images/scooter.svg';
 import cash from '../../assets/images/cash.svg';
-import anna from '../../assets/images/anna.png';
+import me from '../../assets/images/meMain.jpg';
 import { Accordion } from '../../common/Accordion/Accordion';
 import { Form } from '../../components/Form/Form';
 import { Banner } from '../../components/Banner/Banner';
@@ -15,6 +15,9 @@ import { Button } from '../../common/Button/Button';
 import { instImages } from '../../data/instImages';
 import Carousel from 'nuka-carousel';
 import { easeOut, motion } from 'framer-motion';
+import { SOCIAL_MEDIA } from '../../data/constants';
+import { Link } from 'react-router-dom';
+
 const Main = () => {
   return (
     <motion.div
@@ -92,7 +95,7 @@ const Main = () => {
           <div className={styles.aboutContainer}>
             <Title title="Обо мне" addStyles={styles.aboutTitleMobile} />
             <div>
-              <img className={styles.aboutImg} src={anna} alt="anna" />
+              <img className={styles.aboutImg} src={me} alt="anna" />
             </div>
             <div>
               <Title title="Обо мне" addStyles={styles.aboutTitle} />
@@ -100,18 +103,18 @@ const Main = () => {
                 <div className={styles.aboutName}>
                   <span>АНТОН НАЙДЕНОВИЧ</span>
                   <span className={styles.aboutContainerTextInfo}>
-                    Основатель кондитерской Molly Pastry
+                    Разработчик интернет магазина выпечки Molly
                   </span>
                 </div>
                 <div className={styles.aboutText}>
-                  <div>От хобби к собственному делу.</div>Я закончил DGF International Culinary
-                  School в Минске, а впоследствии учился в одной из самых известных школ
-                  гостиничного сервиса и кулинарии в мире Le Cordon Bleu (Франция). Свое дело начал
-                  после того, как получил опыт и работал в одном из крупнейших кондитерских цехов
-                  Грузии (1500 кв.м.).
+                  <div>Учащийся группы 52ТП.</div>
+                  Приложение было разработано с использованием таких технологий как JavaScript,
+                  MongoDB, ReactJS, ExpressJS. Результатом работы стало веб-приложение "Интернет
+                  магазин выпечки"(Molly), предназначенное для продажи выпечки и десертов.
+                  Контактную информацию вы можете найти в подвале приложения.
                   <div>
-                    Пока начал личный бренд и строю собственный кондитерский цех. Моя работа меня
-                    вдохновляет. Благодаря моим сладостям, я могу дарить счастливые моменты для вас!
+                    Моя работа меня вдохновляет. Благодаря моим сладостям, я могу дарить счастливые
+                    моменты для вас!
                   </div>
                 </div>
               </div>
@@ -126,11 +129,10 @@ const Main = () => {
         <div className={styles.imgContainer}>
           {instImages.map((img) => (
             <div style={{ overflow: 'hidden' }} key={img.id}>
-              <img className={styles.instImg} src={img.src} alt="img" />
+              <img width={393} height={393} className={styles.instImg} src={img.src} alt="img" />
             </div>
           ))}
         </div>
-
         <div className={styles.carouselInst}>
           <Carousel
             className={styles.carousel}
@@ -163,7 +165,9 @@ const Main = () => {
             ))}
           </Carousel>
         </div>
-        <Button addStyles={styles.buttonToInst}>Перейти на страницу</Button>
+        <Link to={SOCIAL_MEDIA.INSTAGRAM} target="blank">
+          <Button addStyles={styles.buttonToInst}>Перейти на страницу</Button>
+        </Link>
       </div>
     </motion.div>
   );

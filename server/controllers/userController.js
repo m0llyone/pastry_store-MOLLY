@@ -25,7 +25,7 @@ class UserController {
 
       const user = new User({ email, password: hashPassword, roles: [userRole.value] });
       await user.save();
-      res.status(201).json({ message: 'User was created successfully' });
+      res.status(201).json(user);
     } catch (e) {
       res.status(500).json({ message: 'Registration error' });
     }

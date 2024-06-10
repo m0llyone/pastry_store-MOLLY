@@ -7,36 +7,82 @@
   padding: 50px 20px;
 }
 
+.mainTitle {
+  margin-top: 10px;
+}
+
 .dateOfUpdate {
   color: #705a66;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .wrapperPrivacy p {
   color: #705a66;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .wrapperPrivacy h2 {
   color: #705a66;
   font-family: 'Montserrat', sans-serif;
-  font-size: 50px;
-  margin: 20px 0;
+  font-size: 40px;
+  margin: 25px 0;
 }
 
 .wrapperPrivacy h3 {
   color: #705a66;
   font-family: 'Montserrat', sans-serif;
-  font-size: 35px;
-  margin: 20px 0;
+  font-size: 30px;
+  margin: 15px 0;
 }
 
 .wrapperPrivacy h4 {
   color: #705a66;
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
-  margin: 20px 0;
+  margin: 15px 0;
+}
+
+.wrapperPrivacy ul li {
+  color: #705a66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  margin: 0 0 7px 20px;
+}
+
+@media screen and (max-width: 730px) {
+  .mainTitle span {
+    font-size: 60px !important;
+  }
+  .wrapperPrivacy h2 {
+    font-size: 30px;
+    margin: 20px 0;
+  }
+
+  .wrapperPrivacy h3 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .wrapperPrivacy h4 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .wrapperPrivacy ul li {
+    font-size: 16px;
+    margin: 0 0 7px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mainTitle span {
+    font-size: 50px !important;
+  }
+  .wrapperPrivacy {
+    padding: 40px 10px;
+  }
 }

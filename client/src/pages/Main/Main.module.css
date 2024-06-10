@@ -21,12 +21,11 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-
 }
 
 .subtitle {
   margin-bottom: 20px;
-  color: #705A66;
+  color: #705a66;
   font-family: 'Montserrat';
   font-size: 24px;
 }
@@ -39,7 +38,7 @@
 }
 
 .text {
-  color: #705A66;
+  color: #705a66;
   font-family: 'Montserrat';
   font-size: 16px;
 }
@@ -67,8 +66,8 @@
 }
 
 .deliveryBorder {
-  border-left: 1px solid #DDD5C6;
-  border-right: 1px solid #DDD5C6;
+  border-left: 1px solid #ddd5c6;
+  border-right: 1px solid #ddd5c6;
 }
 
 .deliveryTitle {
@@ -78,7 +77,7 @@
 
 .deliveryText {
   max-width: 287px;
-  color: #705A66;
+  color: #705a66;
   text-align: center;
   font-family: 'Montserrat';
   font-size: 18px;
@@ -102,9 +101,16 @@
   min-height: 395px;
   max-width: 500px;
   width: 100%;
-  color: #705A66;
+  color: #705a66;
   font-family: 'Montserrat';
   margin-left: 105px;
+}
+
+.aboutImg {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 35%;
+  height: 700px;
 }
 
 .aboutName {
@@ -137,7 +143,6 @@
   margin-top: 80px;
   text-align: center;
 }
-
 
 .instContainer {
   margin: 0 auto;
@@ -173,20 +178,20 @@
 }
 
 .dotsContainer {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 40px !important;
-    gap: 20px;
-    max-width: 104px;
-    margin-top: 50px !important;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 40px !important;
+  gap: 20px;
+  max-width: 104px;
+  margin-top: 50px !important;
 }
 
 .sliderContainer {
   margin-top: -20px;
 }
 
-@media screen and (max-width:1240px) {
+@media screen and (max-width: 1240px) {
   .background {
     background-size: 100% 74%;
   }
@@ -220,8 +225,6 @@
   .pictureContainer {
     order: 1;
   }
-
-
 }
 
 @media screen and (max-width: 1110px) {
@@ -233,7 +236,6 @@
   .background {
     background-size: 1110px 80.5%;
   }
-
 }
 
 @media screen and (max-width: 790px) {
@@ -309,13 +311,13 @@
 
   .deliveryBorder {
     width: 241px;
-    border-top: 1px solid #DDD5C6;
-    border-bottom: 1px solid #DDD5C6;
+    border-top: 1px solid #ddd5c6;
+    border-bottom: 1px solid #ddd5c6;
     border-left: none;
     border-right: none;
   }
 
-    .button {
+  .button {
     display: flex;
     outline: none;
     border-radius: 22px;
@@ -323,7 +325,7 @@
     height: 27px;
     background-repeat: no-repeat !important;
     background-color: transparent !important;
-    border: 1px solid #705A66 !important;
+    border: 1px solid #705a66 !important;
     transition: 0.3s;
     position: absolute;
     bottom: -48px;
@@ -334,7 +336,7 @@
   }
 
   .button:hover {
-  background-color: #F5EEE0 !important;
+    background-color: #f5eee0 !important;
   }
 
   .instImg:hover {
@@ -361,7 +363,7 @@
   }
 }
 
-@media screen and (max-width:490px) {
+@media screen and (max-width: 490px) {
   .background {
     background-position: top;
     background-size: 1110px 68%;

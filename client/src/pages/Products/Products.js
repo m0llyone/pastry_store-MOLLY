@@ -8,22 +8,19 @@ import { easeOut, motion } from 'framer-motion';
 import Pagination from '../../components/Pagination/Pagination';
 import { fetchPaginatedProducts } from '../../reducers/productSlice';
 import Preloader from '../../common/Preloader/Preloader';
-import { addToCart } from '../../reducers/userSlice';
+import { addToCart, setCounter } from '../../reducers/userSlice';
 import { Toaster, toast } from 'sonner';
 import axios from 'axios';
 import { SERVER_URL } from '../../data/constants';
-import cake from '../../assets/images/cakes/oreo/oreo-1.jpg';
-import cake2 from '../../assets/images/cakes/oreo/oreo-2.jpg';
-import cake3 from '../../assets/images/cakes/oreo/oreo-3.jpg';
-import cake4 from '../../assets/images/cakes/oreo/oreo-4.jpg';
+import { Search } from '../../common/Search/Search';
 
 const Products = () => {
   const { url } = useParams();
   const { pathname } = useLocation();
 
-  const { user, isAuth, counter } = useSelector((state) => state.user);
+  const { user, isAuth, basket, counter } = useSelector((state) => state.user);
   const { products, pagination, status } = useSelector((state) => state.products);
-  // console.log(cake, cake2, cake3, cake4);
+
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const categories = [
@@ -39,7 +36,6 @@ const Products = () => {
     const id = currentTarget.id;
 
     const res = await axios.get(`${SERVER_URL}/api/products/${id}`);
-
     const { kind, decor, weight } = res.data.category.options;
 
     if (!isAuth || !userId) {
@@ -51,10 +47,11 @@ const Products = () => {
         addToCart({
           userId,
           product: id,
-          quantity: counter + 1,
+          quantity: 1,
           options: { kind: kind[0], decor: decor[0], weight: weight[0] },
         }),
       ).unwrap();
+      dispatch(setCounter(1));
       toast.success('Товар успешно добавлен в корзину');
     } catch (error) {
       toast.error(error);
@@ -71,11 +68,12 @@ const Products = () => {
           }),
         );
       } catch (error) {
-        console.error('Error fetching products:', error);
+        toast.error('Ошибка:', error);
       }
     };
 
     fetchProducts();
+    window.scrollTo(0, 0);
   }, [page, url, dispatch]);
 
   useEffect(() => {
@@ -102,29 +100,31 @@ const Products = () => {
         className={styles.container}
         key={url}
       >
-        <nav className={styles.linkContainer}>
-          {categories.map(({ title, link }, i) => (
-            <NavLink
-              key={i}
-              className={
-                pathname.slice(1) === `catalog/${link}`
-                  ? [styles.navLink_active, styles.navLink].join(' ')
-                  : styles.navLink
-              }
-              to={`/catalog/${link}`}
-            >
-              {title}
-            </NavLink>
-          ))}
-        </nav>
-
+        {' '}
+        <div className={styles.searchContainer}>
+          <nav className={styles.linkContainer}>
+            {categories.map(({ title, link }, i) => (
+              <NavLink
+                key={i}
+                className={
+                  pathname.slice(1) === `catalog/${link}`
+                    ? [styles.navLink_active, styles.navLink].join(' ')
+                    : styles.navLink
+                }
+                to={`/catalog/${link}`}
+              >
+                {title}
+              </NavLink>
+            ))}
+          </nav>
+          <Search />
+        </div>
         <div className={styles.productsContainer}>
           {products.map((item) => (
             <div key={item.id}>
               <Item
                 id={item.id}
-                src={cake}
-                // src={item.images[0]}
+                src={item.images[0]}
                 title={item.title}
                 price={item.price}
                 weight={item.category.baseWeight}

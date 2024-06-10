@@ -9,7 +9,6 @@ import { ReactComponent as Cross } from '../../assets/images/crossIcon.svg';
 import cake from '../../assets/images/burgerImage.png';
 import user from '../../assets/images/user.svg';
 import { Auth } from '../Auth/Auth';
-
 import 'react-tooltip/dist/react-tooltip.css';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +17,7 @@ const Header = memo(({ counter }) => {
   const [isShow, setIsShow] = useState(false);
   const [auth, setAuth] = useState(false);
   const isAuth = useSelector((state) => state.user.isAuth);
+  console.log(counter,'Header');
   return (
     <>
       <header className={styles.header}>
@@ -33,6 +33,7 @@ const Header = memo(({ counter }) => {
             </div>
             <div className={styles.linkContainer}>
               <Link
+                to="/"
                 onClick={() => {
                   setIsShow(!isShow);
                 }}

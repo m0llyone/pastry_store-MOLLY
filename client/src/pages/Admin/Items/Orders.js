@@ -17,14 +17,15 @@ import { Edit, SimpleForm, TextInput } from 'react-admin';
 const GetOrders = () => {
   return (
     <List>
-      <Datagrid>
+      <Datagrid rowClick="show">
         {/* <ReferenceInput source="userId" reference="users" /> */}
         <TextField source="id" />
-        <ArrayField source="basket.items">
+        <ArrayField source="basket.items" disabled>
           <SingleFieldList>
             <ChipField source="quantity" />
           </SingleFieldList>
         </ArrayField>
+        {/* <ArrayField source="basket"></ArrayField> */}
         <TextField source="basket.total" />
         <TextField source="status" />
         <DateField source="createdAt" showTime />

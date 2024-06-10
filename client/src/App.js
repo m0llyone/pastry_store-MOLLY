@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header counter={counter} />
+      {!isAdmin && <Header counter={counter} />}
       {!isAdmin ? (
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>

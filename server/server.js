@@ -11,8 +11,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(corsMiddle);
 
-// app.use('/static', express.static(path.join(__dirname, '../m0llyone.github.io/src/assets/images')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.use('/api', router);
 app.get('/*', (req, res) => {

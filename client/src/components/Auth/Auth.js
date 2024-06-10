@@ -50,20 +50,21 @@ export const Auth = ({ auth, setAuth }) => {
           await authRegistration(data.email, data.password);
           setFlag(!flag);
           reset();
-          toast.success('User was successfully registered!');
+          toast.success('Пользователь был успешно зарегистрирован!');
         } else {
           reset();
-          toast.error(`The passwords don't match!`);
+          toast.error(`Введенные пароли не совпадают!`);
         }
       } else if (!flag) {
         const response = await authLogin(data.email, data.password);
         dispatch(setUser(response.data.user));
         localStorage.setItem('token', response.data.token);
-        toast.success('User was successfully logged in !');
+        toast.success('Вход выполнен успешно!');
         reset();
         if (response.data.user.roles[0] === 'ADMIN') {
           navigate('/admin');
         }
+        //sddddddddddd
       }
     } catch (error) {
       handleErrors(error);
@@ -72,9 +73,9 @@ export const Auth = ({ auth, setAuth }) => {
 
   const handleErrors = (error) => {
     if (error.response && error.response.status === 400) {
-      toast.error('Invalid email or password!');
+      toast.error('Введенные почта либо пароль некорректны!');
     } else {
-      toast.error('Something went wrong... Try again later.');
+      toast.error('Что-то пошло не так... Попробуйте позже.');
     }
   };
 
@@ -104,30 +105,28 @@ export const Auth = ({ auth, setAuth }) => {
             <div className={styles.crossContainer}>
               <Cross className={styles.cross} onClick={() => setAuth(false)} />
             </div>
-            <h3 className={styles.title}>{flag ? 'SIGN UP' : 'LOGIN'}</h3>
+            <h3 className={styles.title}>{flag ? 'Регистрация' : 'Вход'}</h3>
             <div className={styles.inputBlock}>
               <label className={styles.label} htmlFor="email">
-                Email:
+                Почта:
               </label>
               <input
                 className={styles.input}
                 id="email"
                 type="text"
                 {...register('email', {
-                  required: 'This field is required.',
-                  validate: (value) => emailRegex(value) || 'Please provide a valid email address.',
-                  maxLength: { value: 30, message: 'Max length is 30 characters.' },
+                  required: 'Это обязательное поле.',
+                  validate: (value) => emailRegex(value) || 'Введите корректную почту.',
+                  maxLength: { value: 30, message: 'Максимальная длина - 30.' },
                 })}
               />
             </div>
             <div className={styles.error}>
-              {errors?.email && (
-                <p>{errors.email.message || 'Please provide a valid email address.'}</p>
-              )}
+              {errors?.email && <p>{errors.email.message || 'Введите корректную почту.'}</p>}
             </div>
             <div className={styles.inputBlock}>
               <label className={styles.label} htmlFor="password">
-                Password:
+                Пароль:
               </label>
               <input
                 id="password"
@@ -135,20 +134,20 @@ export const Auth = ({ auth, setAuth }) => {
                 className={[styles.passwordInput, styles.input].join(' ')}
                 {...register('password', {
                   required: true,
-                  minLength: { value: 5, message: 'Minimum length is 5 characters.' },
-                  maxLength: { value: 20, message: 'Max length is 20 characters.' },
+                  minLength: { value: 5, message: 'Минимальная длина 5 символов.' },
+                  maxLength: { value: 20, message: 'Максимальная длина 20 символов.' },
                 })}
               />
             </div>
             <div className={styles.error}>
               {errors?.password && (
-                <p>{errors.password.message || 'Minimum length is 5 characters.'}</p>
+                <p>{errors.password.message || 'Минимальная длина 5 символов.'}</p>
               )}
             </div>
             {flag && (
               <div style={{ marginBottom: '10px' }} className={styles.inputBlock}>
                 <label className={styles.label} htmlFor="passwordConfirm">
-                  Confirm the password:
+                  Повторите пароль:
                 </label>
                 <input
                   id="passwordConfirm"
@@ -165,10 +164,10 @@ export const Auth = ({ auth, setAuth }) => {
               disabled={!isValid}
               addStyles={!isValid ? [styles.disabled, styles.button].join(' ') : styles.button}
             >
-              {flag ? 'Sign Up' : 'Login'}
+              {flag ? 'Зарегистрироваться' : 'Войти'}
             </Button>
             <div className={styles.notRegisteredCont}>
-              <span>{flag ? 'Already have an account? ' : `Don't have an account yet? `}</span>
+              <span>{flag ? 'Уже есть аккаунт? ' : `До сих пор нету аккаунта? `}</span>
               <span
                 className={styles.createText}
                 onClick={() => {
@@ -176,7 +175,7 @@ export const Auth = ({ auth, setAuth }) => {
                   reset();
                 }}
               >
-                {flag ? 'Sign in' : ' Register Now'}
+                {flag ? 'Войти' : ' Зарегистрироваться'}
               </span>
             </div>
           </form>

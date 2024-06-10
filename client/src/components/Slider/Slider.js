@@ -2,12 +2,10 @@ import styles from './Slider.module.css';
 import Carousel from 'nuka-carousel';
 import { Title } from '../../common/Title/Title';
 import { Button } from '../../common/Button/Button';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Item } from '../../common/Item/Item';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { SERVER_URL } from '../../data/constants';
+import { useEffect } from 'react';
 import { fetchProducts } from '../../reducers/productSlice';
 import Preloader from '../../common/Preloader/Preloader';
 
@@ -51,7 +49,7 @@ export const Slider = () => {
         }}
       >
         {products
-          .filter((product) => product.isBestseller)
+          ?.filter((product) => product.isBestseller)
           .map((product) => (
             <div className={styles.itemContainer} key={product.id}>
               <Item
@@ -60,9 +58,10 @@ export const Slider = () => {
                 alt={product.category.category}
                 title={product.title}
                 price={product.price}
-                weight={product.baseWeight}
+                weight={product.category.baseWeight}
                 link={product.category.category}
                 addStyles={styles.containerItem}
+                flag={true}
               />
             </div>
           ))}

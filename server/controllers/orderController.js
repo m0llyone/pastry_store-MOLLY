@@ -106,6 +106,20 @@ class OrderController {
       res.status(500).json({ error: e.message });
     }
   }
+
+  async deleteOrder(req, res) {
+    try {
+      const { id } = req.params;
+      const deletedOrder = await Order.findByIdAndDelete(id);
+
+      if (!deletedOrder)
+        return res.status(404).json({ message: `Cannot find any product with ID: ${id}` });
+
+      res.status(204).json(deletedOrder);
+    } catch (e) {
+      res.status(500).json({ message: e.message });
+    }
+  }
 }
 
 export default new OrderController();

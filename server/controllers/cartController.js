@@ -14,7 +14,7 @@ class BasketController {
 
       return res.status(200).json(basket);
     } catch (error) {
-      console.error('Error fetching basket:', error); // Добавлено логирование
+      console.error('Error fetching basket:', error);
       return res.status(500).json({ message: 'Internal Server Error' });
     }
   }

@@ -22,7 +22,6 @@ class ProductController {
       const { page, category, title, all } = req.query;
       const query = {};
       const role = req.user.role[0];
-      // console.log(role);
 
       if (role === 'ADMIN') {
         const products = await Product.find();
@@ -150,7 +149,7 @@ class ProductController {
 
       if (!updatedProduct)
         return res.status(404).json({ message: `Cannot find any product with ID: ${id}` });
-
+      res.header('Content-Range', 'items 0-9/100');
       res.status(200).json(updatedProduct);
     } catch (e) {
       res.status(500).json({ error: e.message });

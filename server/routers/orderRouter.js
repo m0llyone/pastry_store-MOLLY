@@ -11,3 +11,4 @@ orderRouter.get('/order', orderController.getOrders);
 orderRouter.get('/order/:id', orderController.getOrderAdmin);
 // orderRouter.get('/order/:id', orderController.getOrder);
 orderRouter.put('/order/:id', orderController.updateOrder);
+orderRouter.delete('/order/:id', orderController.deleteOrder);

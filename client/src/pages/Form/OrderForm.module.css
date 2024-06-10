@@ -288,6 +288,24 @@
   box-shadow: none;
 }
 
+.confirmButtonContainer {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tooltipContainer {
+  background-color: var(--rt-color-warning) !important;
+  color: var(--rt-color-white) !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  max-width: 500px;
+}
+
+.tooltipArrow {
+  width: 0 !important;
+  height: 0 !important;
+}
+
 @media screen and (max-width: 1210px) {
   .orderContainer {
     padding: 45px 20px 64px;

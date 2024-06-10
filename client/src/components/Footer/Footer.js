@@ -15,7 +15,7 @@ const CONTACTS = [
 
 const LINKS = [
   { to: '/privacy-policy', text: 'Политика конфиденциальности' },
-  { to: '#', text: 'Договор оферты' },
+  { to: '/terms-of-use', text: 'Условия использования' },
 ];
 
 const ICONS = [

@@ -11,7 +11,7 @@ productRouter.post('/products', ProductController.postProduct);
 productRouter.get('/products/:id', ProductController.getProduct);
 productRouter.get('/product/:id/similar', ProductController.getSimilarProducts);
 
-productRouter.delete('/product/:id', ProductController.deleteProduct);
+productRouter.delete('/products/:id', ProductController.deleteProduct);
 productRouter.put('/products/:id', ProductController.updateProduct);
 
 productRouter.post('/category', CategoryController.postCategory);

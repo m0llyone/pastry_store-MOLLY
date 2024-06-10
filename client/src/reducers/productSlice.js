@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import { SERVER_URL } from '../data/constants';
 import axios from 'axios';
 
-const getAuthHeader = () => {
+export const getAuthHeader = () => {
   const token = localStorage.getItem('token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
@@ -69,5 +68,4 @@ const productSlice = createSlice({
   },
 });
 
-// export const {  } = productSlice.actions;
 export default productSlice.reducer;

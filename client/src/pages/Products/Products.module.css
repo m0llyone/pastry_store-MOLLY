@@ -17,6 +17,11 @@
   justify-content: center;
 }
 
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .navLink_active {
   background: #705a66;
   color: rgb(186, 182, 182) !important;
@@ -40,6 +45,14 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+@media screen and (max-width: 1235px) {
+  .searchContainer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 900px) {

@@ -24,12 +24,11 @@ const productSchema = mongoose.Schema(
     },
     images: {
       type: [String],
-      required: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
-      required: true,
+      // required: true,
     },
     isBestseller: {
       type: Boolean,

@@ -1,10 +1,9 @@
 import styles from './Product.module.css';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from '../../common/Button/Button';
 import { Link } from 'react-router-dom';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Carousel from 'nuka-carousel';
-import { AppContext } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../common/Modal/Modal';
 import { Item } from '../../common/Item/Item';
@@ -15,8 +14,7 @@ import Preloader from '../../common/Preloader/Preloader';
 import { Toaster, toast } from 'sonner';
 import minus from '../../assets/images/minus.svg';
 import plus from '../../assets/images/plus.svg';
-import cake from '../../assets/images/cakes/oreo/oreo-1.jpg';
-import { addToCart, setBasket, setCounter } from '../../reducers/userSlice';
+import { addToCart, setCounter } from '../../reducers/userSlice';
 
 const Product = () => {
   const { url, id } = useParams();
@@ -33,8 +31,9 @@ const Product = () => {
   });
   const [suggestion, setSuggestion] = useState([]);
   const [modal, setModal] = useState(false);
-  const [disabled, setDisabled] = useState(false); // не нужен
+  const [disabled, setDisabled] = useState(false);
   const [cartCount, setCartCount] = useState(1);
+  const [mainImage, setMainImage] = useState('');
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -55,7 +54,9 @@ const Product = () => {
     fetchProductData();
   }, [id]);
 
-  console.log(suggestion, 'suggestion');
+  const handleMouseEnter = (image) => {
+    setMainImage(image);
+  };
 
   const handleAddCount = useCallback(() => {
     setCartCount((prev) => prev + 1);
@@ -73,50 +74,29 @@ const Product = () => {
     }));
   };
 
+  // const addToBasketSuggest = () => {};
+
   const addToBasket = async (e) => {
     e.preventDefault();
 
-    if (!isAuth) {
-      return toast.error('Войдите в аккаунт для добавления товара в корзину');
-    }
-
     const userId = user?.id;
-
-    if (!userId) {
+    if (!userId || !isAuth) {
       return toast.error('Ошибка авторизации. Повторите вход.');
     }
 
-    console.log([{ product: id, quantity: cartCount, options: value }], 'value');
     try {
-      const resultAction = await dispatch(
+      await dispatch(
         addToCart({ userId, product: id, quantity: cartCount, options: value }),
       ).unwrap();
 
-      // Если есть специфическое состояние, проверяем результат
-      console.log(resultAction, 'resultAction');
+      dispatch(setCounter(+cartCount));
       setModal(false);
       toast.success('Товар успешно добавлен в корзину');
+      setCartCount(1);
     } catch (error) {
       toast.error(error);
-      console.error(error); // Логируем ошибку
     }
   };
-  // const handleAddCount = ({ currentTarget }) => {
-  //   const { id } = currentTarget;
-  //   dispatch(increase_product({ id: id, link: link }));
-  // };
-
-  // const handleSubCount = ({ currentTarget }) => {
-  //   if (cartCount >= 1) {
-  //     const { id } = currentTarget;
-  //     dispatch(decrease_price({ id: id, link: link }));
-  //   }
-  // };
-
-  // const addToCart = ({ currentTarget }) => {
-  //   const { id } = currentTarget;
-  //   dispatch(increase_product({ id: id, link: link }));
-  // };
 
   if (loading || product === null) {
     return <Preloader />;
@@ -143,33 +123,41 @@ const Product = () => {
         <div className={styles.titleMobile}>{product.title}</div>
         <div className={styles.productCarousel}>
           <div style={{ overflow: 'hidden' }}>
-            <img className={styles.imageProduct} src={cake} alt={product.title} />
+            <img
+              className={styles.imageProduct}
+              src={mainImage || product.images[0]}
+              alt={product.title}
+            />
           </div>
-
-          <div className={styles.carouselContainer}>
-            <Carousel
-              className={styles.carousel}
-              cellAlign="center"
-              wrapAround={true}
-              speed={2000}
-              autoplay={true}
-              slidesToShow={3}
-              defaultControlsConfig={{
-                nextButtonText: ' ',
-                prevButtonText: ' ',
-                nextButtonClassName: [styles.buttonCarousel, styles.nextButton].join(' '),
-                prevButtonClassName: [styles.buttonCarousel, styles.prevButton].join(' '),
-                pagingDotsClassName: styles.dots,
-              }}
-            >
-              {/* {product.images.map((el, i) => (
-                <img key={i} className={styles.carouselImage} src={el} alt="img" />
-              ))} */}
-              {[cake, cake, cake, cake].map((el, i) => (
-                <img key={i} className={styles.carouselImage} src={el} alt="img" />
-              ))}
-            </Carousel>
-          </div>
+          {product.images.length > 1 && (
+            <div className={styles.carouselContainer}>
+              <Carousel
+                className={styles.carousel}
+                cellAlign="center"
+                wrapAround={true}
+                speed={2000}
+                autoplay={true}
+                slidesToShow={3}
+                defaultControlsConfig={{
+                  nextButtonText: ' ',
+                  prevButtonText: ' ',
+                  nextButtonClassName: [styles.buttonCarousel, styles.nextButton].join(' '),
+                  prevButtonClassName: [styles.buttonCarousel, styles.prevButton].join(' '),
+                  pagingDotsClassName: styles.dots,
+                }}
+              >
+                {product.images.map((el, i) => (
+                  <img
+                    key={i}
+                    className={styles.carouselImage}
+                    src={el}
+                    onMouseEnter={() => handleMouseEnter(el)}
+                    alt="img"
+                  />
+                ))}
+              </Carousel>
+            </div>
+          )}
         </div>
         <div className={styles.productInfo}>
           <div>
@@ -186,7 +174,7 @@ const Product = () => {
             <div className={styles.selectContainer}>
               <div className={styles.select}>
                 <select onChange={handleChange} name="kind" value={value.kind} id={id}>
-                  <option value="Ванильный">Вид</option>
+                  <option value="Классический">Вид</option>
                   {product.category.options.kind.map((option, index) => (
                     <option key={index} value={option}>
                       {option}
@@ -196,7 +184,7 @@ const Product = () => {
               </div>
               <div className={styles.select}>
                 <select onChange={handleChange} name="decor" value={value.decor} id={id}>
-                  <option value="Без декора">Декор</option>
+                  <option value="Без декора">Без декора</option>
                   {product.category.options.decor.map((option, index) => (
                     <option key={index} value={option}>
                       {option}
@@ -206,7 +194,7 @@ const Product = () => {
               </div>
               <div className={styles.select}>
                 <select onChange={handleChange} name="weight" value={value.weight} id={id}>
-                  <option value="1 кг">Вес готового изделия</option>
+                  <option value="1 кг">{product.category.baseWeight}</option>
                   {product.category.options.weight.map((option, index) => (
                     <option key={index} value={option}>
                       {option}
@@ -339,7 +327,7 @@ const Product = () => {
       <div className={styles.offerContainer}>
         {suggestion.map((product) => (
           <Item
-            // onClick={addToBasket}
+            onClick={addToBasket}
             key={product._id}
             id={product._id}
             src={product.images[0]}
@@ -347,6 +335,7 @@ const Product = () => {
             price={product.price}
             weight={product.category.baseWeight}
             link={product.category.category}
+            flag={true}
           />
         ))}
       </div>

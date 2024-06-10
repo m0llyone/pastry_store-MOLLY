@@ -92,6 +92,11 @@
   background-color: #705a66;
 }
 
+.cartImg:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
 @media screen and (max-width: 1210px) {
   .productContainer,
   .titleContainer,

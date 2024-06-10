@@ -13,6 +13,8 @@ import axios from 'axios';
 import { SERVER_URL } from '../../data/constants';
 import { removeAllProducts, removeProduct } from '../../reducers/userSlice';
 import { Input, Radio } from './Items/Items';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 
 const initialState = {
   name: '',
@@ -46,24 +48,24 @@ const OrderForm = () => {
     }
   };
 
+  console.log(error);
   useEffect(() => {
-    const disabled = Object.entries(state).some(([key, value]) => {
-      if (key === 'comment') return false;
-
-      if (typeof value === 'object') {
-        return Object.values(value).some((subValue) => subValue.trim() === '');
-      } else {
+    const isFormInvalid =
+      Object.values(state).some((value) => {
+        if (typeof value === 'object') {
+          return Object.values(value).some((subValue) => subValue.trim() === '');
+        }
         return value.trim() === '';
-      }
-    });
+      }) || Object.values(error).some((errMsg) => errMsg !== '');
 
-    setIsDisabled(disabled);
-  }, [state]);
+    setIsDisabled(isFormInvalid);
+  }, [state, error]);
 
+  console.log(isDisabled, 'isDisabled');
   console.log(state);
+
   const handleSubmit = async () => {
-    // e.preventDefault();
-    if (!isDisabled) {
+    if (!isDisabled && basket.items.length) {
       await axios.post(`${SERVER_URL}/api/order`, {
         userId: user.id,
         basket: basket.id,
@@ -71,6 +73,7 @@ const OrderForm = () => {
       });
       setModal(true);
       dispatch(removeAllProducts());
+      setState(initialState);
     }
   };
 
@@ -125,6 +128,7 @@ const OrderForm = () => {
               value={state.date}
               onChange={handleChange}
               addStyles={styles.formInputDate}
+              error={error.date}
               label="Дата доставки"
             />
           </div>
@@ -300,19 +304,40 @@ const OrderForm = () => {
               {basket.total} BYN
             </div>
           </div>
-          <Button
-            disabled={isDisabled}
-            addStyles={
-              isDisabled ? [styles.formButton, styles.disabled].join(' ') : styles.formButton
+          <div
+            data-tooltip-id="validateTooltip"
+            data-tooltip-content={
+              isDisabled
+                ? 'Заполните корректно все поля для оформления заказа'
+                : 'Ваша корзина пустая'
             }
-            onClick={(e) => {
-              e.preventDefault();
-              handleSubmit(e);
-              handleChange(e);
-            }}
+            className={styles.confirmButtonContainer}
           >
-            Оформить заказ
-          </Button>
+            <Button
+              disabled={isDisabled}
+              addStyles={
+                isDisabled && !basket.items
+                  ? [styles.formButton, styles.disabled].join(' ')
+                  : styles.formButton
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                handleSubmit(e);
+                handleChange(e);
+              }}
+            >
+              Оформить заказ
+            </Button>
+            {isDisabled && (
+              <Tooltip
+                className={styles.tooltipContainer}
+                classNameArrow={styles.tooltipArrow}
+                id="validateTooltip"
+                place="bottom"
+                effect="solid"
+              />
+            )}
+          </div>
         </form>
         <Modal modal={modal} setModal={setModal}>
           <div className={styles.contentContainer}>

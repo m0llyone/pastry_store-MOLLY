@@ -77,8 +77,7 @@ const Basket = () => {
                   <img
                     className={styles.productImage}
                     width={'286px'}
-                    src={cake}
-                    // src={el.product.images[0]}
+                    src={el.product.images[0]}
                     alt="img"
                   />
                 </Link>
@@ -109,7 +108,7 @@ const Basket = () => {
                   </div>
                   <div className={styles.finalPrice}>
                     <span>Общая сумма: </span>
-                    <span>{el.quantity * el.product.price} BYN</span>
+                    <span>{parseFloat(el.quantity * el.product.price).toFixed(2)} BYN</span>
                   </div>
                 </div>
               </div>
@@ -121,7 +120,7 @@ const Basket = () => {
         <div className={styles.fullPriceContainer}>
           <div className={styles.fullPrice}>
             <div>
-              <span>Итого: {basket.total} BYN</span>
+              <span>Итого: {parseFloat(basket.total).toFixed(2)} BYN</span>
             </div>
             <Button onClick={() => navigate('/form')} addStyles={styles.basketButton}>
               Оформить

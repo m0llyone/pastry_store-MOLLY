@@ -17,8 +17,10 @@ import Carousel from 'nuka-carousel';
 import { easeOut, motion } from 'framer-motion';
 import { SOCIAL_MEDIA } from '../../data/constants';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
+  const { isAuth } = useSelector((state) => state.user);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,7 +30,7 @@ const Main = () => {
     >
       <Banner />
       <Navigation />
-      <Slider />
+      {isAuth && <Slider />}
       <div className={styles.background}>
         <div className={styles.container}>
           <Title title="Почему Molly?" addStyles={styles.title} />

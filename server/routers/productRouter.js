@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { Product } from '../models/productModel.js';
 import ProductController from '../controllers/productController.js';
 import CategoryController from '../controllers/categoryController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
@@ -17,5 +16,4 @@ productRouter.put('/products/:id', ProductController.updateProduct);
 productRouter.post('/category', CategoryController.postCategory);
 productRouter.get('/category', CategoryController.getCategories);
 
-// productRouter.use(authMiddleware);
 productRouter.get('/products', authMiddleware, ProductController.getProducts);

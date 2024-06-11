@@ -10,6 +10,8 @@ import {
   InnerDatagrid,
   ChipField,
   DateField,
+  SelectInput,
+  required,
   // ReferenceInput,
 } from 'react-admin';
 import { Edit, SimpleForm, TextInput } from 'react-admin';
@@ -29,8 +31,8 @@ const GetOrders = () => {
         <TextField source="basket.total" />
         <TextField source="status" />
         <DateField source="createdAt" showTime />
-        <EditButton />
-        <DeleteButton />
+        <EditButton label="Изменить" />
+        <DeleteButton label="Удалить" />
       </Datagrid>
     </List>
   );
@@ -41,7 +43,16 @@ export const EditOrder = () => {
     <Edit title="Редактировать заказ">
       <SimpleForm>
         <TextInput source="id" disabled />
-        <TextInput source="status" />
+        <SelectInput
+          source="status"
+          choices={[
+            { id: 'Pending', name: 'Pending' },
+            { id: 'Confirmed', name: 'Confirmed' },
+            { id: 'Shipped', name: 'Shipped' },
+            { id: 'Cancelled', name: 'Cancelled' },
+          ]}
+          validate={required()}
+        />
       </SimpleForm>
     </Edit>
   );

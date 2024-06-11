@@ -51,7 +51,7 @@ class ProductController {
           if (products.length === 0) {
             return res.status(404).json({ message: 'Продукты не найдены' });
           }
-          // res.set('x-total-count', products.length);
+
           res.header('Content-Range', `items 0-${products.length - 1}/${products.length}`);
 
           return res.json({ products });
@@ -67,7 +67,7 @@ class ProductController {
           if (products.length === 0) {
             return res.status(404).json({ message: 'Продукты не найдены' });
           }
-          // res.set('x-total-count', count);
+
           return res.json({
             pagination: {
               count,

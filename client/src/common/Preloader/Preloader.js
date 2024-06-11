@@ -3,8 +3,7 @@ import styles from './Preloader.module.css';
 const Preloader = () => {
   return (
     <div className={styles.container}>
-      {' '}
-      <img src={preloader} alt="Loading..." />{' '}
+      <img src={preloader} alt="Loading..." />
     </div>
   );
 };

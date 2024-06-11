@@ -17,7 +17,7 @@ const Header = memo(({ counter }) => {
   const [isShow, setIsShow] = useState(false);
   const [auth, setAuth] = useState(false);
   const isAuth = useSelector((state) => state.user.isAuth);
-  console.log(counter,'Header');
+
   return (
     <>
       <header className={styles.header}>
@@ -86,7 +86,7 @@ const Header = memo(({ counter }) => {
                   data-tooltip-content="Корзина"
                   data-tooltip-id="tooltip"
                 />
-                <span className={styles.count}>{counter}</span>
+                {counter > 0 && <span className={styles.count}>{counter}</span>}
               </div>
             </div>
           </div>

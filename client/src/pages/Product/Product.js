@@ -74,8 +74,6 @@ const Product = () => {
     }));
   };
 
-  // const addToBasketSuggest = () => {};
-
   const addToBasket = async (e) => {
     e.preventDefault();
 

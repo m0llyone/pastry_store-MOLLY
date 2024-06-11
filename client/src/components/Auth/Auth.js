@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Title } from '../../common/Title/Title';
 import Preloader from '../../common/Preloader/Preloader';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+
 export const Auth = ({ auth, setAuth }) => {
   const {
     register,
@@ -64,7 +64,6 @@ export const Auth = ({ auth, setAuth }) => {
         if (response.data.user.roles[0] === 'ADMIN') {
           navigate('/admin');
         }
-        //sddddddddddd
       }
     } catch (error) {
       handleErrors(error);
@@ -85,9 +84,10 @@ export const Auth = ({ auth, setAuth }) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && isValid) {
-      handleSubmit(onSubmit)();
-    } //тост два раза вызывается
+    // if (event.key === 'Enter' && isValid) {
+    //   event.preventDefault();
+    //   onSubmit();
+    // }
   };
 
   return (

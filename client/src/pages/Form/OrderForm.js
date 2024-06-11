@@ -48,7 +48,6 @@ const OrderForm = () => {
     }
   };
 
-  console.log(error);
   useEffect(() => {
     const isFormInvalid =
       Object.values(state).some((value) => {
@@ -61,11 +60,8 @@ const OrderForm = () => {
     setIsDisabled(isFormInvalid);
   }, [state, error]);
 
-  console.log(isDisabled, 'isDisabled');
-  console.log(state);
-
   const handleSubmit = async () => {
-    if (!isDisabled && basket.items.length) {
+    if (!isDisabled && basket.items) {
       await axios.post(`${SERVER_URL}/api/order`, {
         userId: user.id,
         basket: basket.id,
@@ -316,9 +312,7 @@ const OrderForm = () => {
             <Button
               disabled={isDisabled}
               addStyles={
-                isDisabled && !basket.items
-                  ? [styles.formButton, styles.disabled].join(' ')
-                  : styles.formButton
+                isDisabled ? [styles.formButton, styles.disabled].join(' ') : styles.formButton
               }
               onClick={(e) => {
                 e.preventDefault();

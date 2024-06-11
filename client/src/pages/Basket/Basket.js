@@ -9,7 +9,7 @@ import axios from 'axios';
 import { SERVER_URL } from '../../data/constants';
 import { removeAllProducts, removeProduct } from '../../reducers/userSlice';
 import Preloader from '../../common/Preloader/Preloader';
-import cake from '../../assets/images/cakes/oreo/oreo-1.jpg';
+
 const Basket = () => {
   const { basket, user, status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -33,8 +33,6 @@ const Basket = () => {
       console.log(error);
     }
   };
-
-  console.log(basket, 'basket');
 
   if (status === 'loading') {
     return <Preloader />;
@@ -107,8 +105,9 @@ const Basket = () => {
                     </span>
                   </div>
                   <div className={styles.finalPrice}>
-                    <span>Общая сумма: </span>
-                    <span>{parseFloat(el.quantity * el.product.price).toFixed(2)} BYN</span>
+                    <span>
+                      Общая сумма: {parseFloat(el.quantity * el.product.price).toFixed(2)} BYN
+                    </span>
                   </div>
                 </div>
               </div>

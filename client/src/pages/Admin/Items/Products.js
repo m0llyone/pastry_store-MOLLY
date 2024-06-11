@@ -33,8 +33,8 @@ export const GetProducts = () => {
         <TextField source="price" />
         <TextField source="description" />
         {/* <TextField source="category.category" /> */}
-        <EditButton />
-        <DeleteButton />
+        <EditButton label="Изменить" />
+        <DeleteButton label="Удалить" />
       </Datagrid>
     </List>
   );

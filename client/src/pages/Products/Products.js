@@ -18,7 +18,7 @@ const Products = () => {
   const { url } = useParams();
   const { pathname } = useLocation();
 
-  const { user, isAuth, basket, counter } = useSelector((state) => state.user);
+  const { user, isAuth } = useSelector((state) => state.user);
   const { products, pagination, status } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
@@ -90,7 +90,6 @@ const Products = () => {
 
   return (
     <>
-      {/* <img src={cake} alt="cake" /> */}
       <Title addStyles={styles.titleCatalog} title="Каталог" />
       <motion.div
         initial={{ opacity: 0 }}
@@ -100,7 +99,6 @@ const Products = () => {
         className={styles.container}
         key={url}
       >
-        {' '}
         <div className={styles.searchContainer}>
           <nav className={styles.linkContainer}>
             {categories.map(({ title, link }, i) => (

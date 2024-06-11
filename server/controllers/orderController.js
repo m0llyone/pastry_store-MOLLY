@@ -100,7 +100,6 @@ class OrderController {
         return res.status(404).json({ message: `Cannot find any order with ID: ${id}` });
       }
 
-      // res.header('Content-Range', 'items 0-9/100');
       return res.status(200).json(updatedOrder);
     } catch (e) {
       res.status(500).json({ error: e.message });

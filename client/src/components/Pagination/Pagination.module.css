@@ -37,3 +37,9 @@
   background-color: #ffffff;
   border-color: #dee2e6;
 }
+
+@media screen and (max-width: 720px) {
+  .pageLink {
+    padding: 3px 9px;
+  }
+}

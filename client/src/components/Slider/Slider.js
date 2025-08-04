@@ -55,7 +55,7 @@ export const Slider = () => {
               <Item
                 id={product.id}
                 src={product.images[0]}
-                alt={product.category.category}
+                alt={product.category.title}
                 title={product.title}
                 price={product.price}
                 weight={product.category.baseWeight}

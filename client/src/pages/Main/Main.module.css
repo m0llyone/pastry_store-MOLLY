@@ -236,6 +236,11 @@
   .background {
     background-size: 1110px 80.5%;
   }
+
+  .pictureContainer img {
+    margin: 80px 0 0 !important;
+    height: 332px;
+  }
 }
 
 @media screen and (max-width: 790px) {
@@ -302,7 +307,6 @@
 
   .deliveryText {
     font-size: 16px;
-    min-width: 287px;
   }
 
   .subtitle {
@@ -360,6 +364,11 @@
     width: 261px;
     height: 261px;
     margin-right: 20px;
+  }
+
+  .pictureContainer img {
+    margin: 20px 0 0 !important;
+    height: 332px;
   }
 }
 
